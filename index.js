@@ -24,7 +24,7 @@ async function fetchAPI() {
   const response = await fetch(testURL2);
   const data = await response.json();
   console.log("data:", data);
-  console.log("data part:", data.hits[0].recipe.digest);
+  // console.log("data part:", data.hits[0].recipe.digest);
 
 
   const recipeArray = data.hits;
@@ -52,12 +52,12 @@ function generateHTML(results) {
   let generatedHTML = "";
 
   results.map((result) => {
-    let ingredients = "";
-
-    // sorts ingredients into an html numbered list, stores in ingredients variable
     // console.log(result);
+    
+    // sorts ingredients into an html numbered list, stores in ingredients variable
+    let ingredients = "";
     for (let i = 0; i < result.recipe.ingredients.length; i++) {
-      ingredients += "<li>" + result.recipe.ingredients[i].text + "</li>";
+      ingredients += "<li>" + result.recipe.ingredients[i].food + "</li>";
     };
 
     // accumulates each item into generatedHTML variable
@@ -70,7 +70,8 @@ function generateHTML(results) {
         </div>
         <p class="item-data">Calories: ${Math.round(result.recipe.calories)}</p>
         <p>Total time: ${result.recipe.totalTime > 0 ? timeFormat(result.recipe.totalTime) : "Varies"}</p>
-        <p>cuisine type: ${result.recipe.cuisineType[0]}</p>
+        <p>Cuisine type: ${result.recipe.cuisineType[0]}</p>
+        <p>Meap type: ${result.recipe.mealType}</p>
         <p class="item-data">Diet label: ${
           result.recipe.dietLabels.length > 0
             ? result.recipe.dietLabels

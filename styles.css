@@ -6,7 +6,7 @@
 }
 
 body {
-  color: orange;
+  color: green;
 }
 
 img {
@@ -41,29 +41,41 @@ section {
   color: whitesmoke;
   margin-bottom: 30px;
 }
+
+/* form section*/
 form {
   width: 90%;
   max-width: 400px;
   margin: 20px auto;
   background-color: rgb(223, 223, 223);
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 }
-input {
-  width: 90%;
+input.keyword {
+  width: 100%;
   padding: 10px;
   border-radius: 4px;
   border: none;
   outline: none;
   font-size: 2rem;
-  background-color: rgb(223, 223, 223);
+
   display: inline-block;
 }
-form ion-icon {
-  width: 8%;
-  font-size: 3rem;
-  margin-bottom: -8px;
-  color: rgb(75, 75, 75);
-  display: inline-block;
+.meal-type, .other-type {
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 1.5rem;
 }
+.submit-form {
+  width: 70%;
+  margin: 15px auto;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+/* Search result section */
 .search-result {
   margin-top: 50px;
   width: 100%;
