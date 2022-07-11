@@ -11,12 +11,16 @@ body {
 
 img {
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 html {
   font-family: "Nunito";
   font-size: 12px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
 }
 
 section {
@@ -62,7 +66,7 @@ input.keyword {
 
   display: inline-block;
 }
-.meal-type, .other-type {
+.input-container {
   margin: 0 auto;
   margin-top: 20px;
   font-size: 1.5rem;
@@ -137,7 +141,9 @@ input.keyword {
   padding: 20px;
   font-size: 3rem;
 }
-
+ul {
+  list-style-type: none;
+}
 @media (max-width: 768px) {
   .search-result {
     grid-gap: 10px;
