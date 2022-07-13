@@ -68,29 +68,36 @@ function generateHTML(results) {
     generatedHTML += `
       <div class="item">
         <div class="img-btn-flex">
-          <div class="">
+          <div>
             <a target="_blank" href="${result.recipe.url}"><img src="${result.recipe.image}" alt="img"></a>  
           </div>
           <a class="view-btn" target="_blank" href="${result.recipe.url}">View Recipe</a>
         </div>
-        <div>
-          <h2 class="">${result.recipe.label}</h2>
-          <p>Calories: ${Math.round(result.recipe.calories)}</p>
-          <p>Total time: ${result.recipe.totalTime > 0 ? timeFormat(result.recipe.totalTime) : "Varies"}</p>
-          <p>Cuisine type: ${result.recipe.cuisineType[0]}</p>
-          <p>Fat: ${Math.round(result.recipe.digest[0].total)} g</p>
-          <p>Carbs: ${Math.round(result.recipe.digest[1].total)} g</p>
-          <p>Protein: ${Math.round(result.recipe.digest[2].total)} g</p>
-          <p>Diet label: 
-            ${result.recipe.dietLabels.length > 0 ? 
-              result.recipe.dietLabels : 
-              "No data found"}
-          </p>
+        <div class="well">
+          <h2>${result.recipe.label}</h2>
+          <div class="data-cont">
+            <p>Calories: <strong>${Math.round(result.recipe.calories)}</strong></p>
+            <p>Total time: <strong>${result.recipe.totalTime > 0 ? timeFormat(result.recipe.totalTime) : "Varies"}</strong></p>
+          </div>
+          <div class="data-cont">
+            <p>Cuisine type: ${result.recipe.cuisineType[0]}</p>
+            <p>Diet label: 
+              ${result.recipe.dietLabels.length > 0 ? 
+                result.recipe.dietLabels : 
+                "No data found"}
+            </p>
+          </div>
+          <div class="data-cont">
+            <p>Fat: ${Math.round(result.recipe.digest[0].total)} g</p>
+            <p>Carbs: ${Math.round(result.recipe.digest[1].total)} g</p>
+            <p>Protein: ${Math.round(result.recipe.digest[2].total)} g</p>
+          </div>
         </div>
-        <div>
+        <div class="well">
           <h2>Ingredients:</h2>
           <ul>${ingredients}</ul>
-        </div>
+          </div>
+          <a id="ingredients-btn" class="view-btn" target="_blank" href="${result.recipe.url}">View Recipe</a>
       </div>
     `;
   });
