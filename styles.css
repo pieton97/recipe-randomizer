@@ -101,7 +101,9 @@ input.keyword {
   background-color: #404041bd;
   color: rgba(245, 245, 245, 0.911);
 }
-
+label input {
+  vertical-align: middle;
+}
 /* Search result section */
 .search-result {
   margin-top: 40px;
