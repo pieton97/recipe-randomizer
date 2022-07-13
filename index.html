@@ -15,26 +15,40 @@
       <h1 class="brand">Dammit! what we eating?</h1>
       <h2>Stop wasting time. Pick one and do it.</h2>
       <form>
-        <input class="keyword" type="text" placeholder="Add any keyword (optional)">
+        <input class="keyword" type="search" placeholder="Add any keyword (optional)">
         
-        <div class="input-container">
-          <input type="radio" id="breakfast" name="meal-type" value="Breakfast" checked>
-          <label for="breakfast">Breakfast</label>
-          <input type="radio" id="lunch" name="meal-type" value="Lunch">
-          <label for="lunch">Lunch</label>
-          <input type="radio" id="dinner" name="meal-type" value="Dinner">
-          <label for="dinner">Dinner</label>
-          <input type="radio" id="Snack" name="meal-type" value="Snack">
-          <label for="Snack">Snacks</label>
-          <input type="radio" id="Teatime" name="meal-type" value="Teatime">
-          <label for="Teatime">Desserts</label>
+        <div class="input-container flex-inputs">
+          <label for="breakfast">
+            <input type="radio" id="breakfast" name="meal-type" value="Breakfast" checked>
+            Breakfast
+          </label>
+          <label for="lunch">
+            <input type="radio" id="lunch" name="meal-type" value="Lunch">
+            Lunch
+          </label>
+          <label for="dinner">
+            <input type="radio" id="dinner" name="meal-type" value="Dinner">
+            Dinner
+          </label>
+          <label for="Snack">
+            <input type="radio" id="Snack" name="meal-type" value="Snack">
+            Snacks
+          </label>
+          <label for="Teatime">
+            <input type="radio" id="Teatime" name="meal-type" value="Teatime">
+            Desserts
+          </label>
         </div>
 
-        <div class="input-container">
-          <input type="checkbox" id="gluten" name="gluten" value="gluten-free">
-          <label for="gluten"> Gluten-Free</label>
-          <input type="checkbox" id="vegetarian" name="vegetarian" value="vegetarian">
-          <label for="vegetarian"> Vegetarian</label>
+        <div class="input-container flex-inputs">
+          <label for="gluten"> 
+            <input type="checkbox" id="gluten" name="gluten" value="gluten-free">
+            Gluten-Free
+          </label>
+          <label for="vegetarian"> 
+            <input type="checkbox" id="vegetarian" name="vegetarian" value="vegetarian">
+            Vegetarian
+          </label>
         </div>
         
         <button class="submit-form" type="submit">Search</button>

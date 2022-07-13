@@ -25,35 +25,27 @@ searchForm.addEventListener("submit", (e) => {
   vegetarianValue = (vegetarian === null) ? "" : `&health=${vegetarian.value}`;
   
   let choices = document.querySelector('input[name="choices"]:checked');
-  choiesValue = (choices === null) ? 3 : 7;
-  console.log(choiesValue);
-
+  choiesValue = (choices === null) ? 3 : 6;
   fetchAPI();
 });
 
-const baseURL = `https://api.edamam.com/search?q=${searchQuery}&${APP_ID_Key}&from=0&to=20&random=true`;
-const testURL3 = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&${APP_ID_Key}&health=gluten-free&health=vegetarian&mealType=Dinner&mealType=Lunch&random=true`;
-
 // fetches recipe from api 
 async function fetchAPI() {
-  const testURL2 = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&${APP_ID_Key}${glutenValue}${vegetarianValue}&mealType=${mealType}&random=true`
+  const baseURL = `https://api.edamam.com/api/recipes/v2?type=public&q=${searchQuery}&${APP_ID_Key}${glutenValue}${vegetarianValue}&mealType=${mealType}&random=true`
 
-  const response = await fetch(testURL2);
+  const response = await fetch(baseURL);
   const data = await response.json();
-  console.log("data:", data);
+  console.log("data:", data.hits);
 
   const recipeArray = data.hits;
-  // console.log("array1" ,recipeArray[1]);
-
   generateHTML(recipeArray.slice(0,choiesValue));
 }
 
-// convert (input:minutes) to (x hrs) (x minutes)
+// convert (input: x minutes) to (x hrs) (x minutes)
 function timeFormat(duration){
   let hrs = Math.floor(duration / 60);
   let mins = Math.floor(duration % 60);
   let time = "";
-
   if (hrs > 0) {
     time += "" + hrs + (hrs < 2 ? " hr " : " hrs ") + (mins < 10 ? "0" : "");
   }
@@ -67,34 +59,38 @@ function generateHTML(results) {
   let generatedHTML = "";
 
   results.map((result) => {
-    // console.log(result);
-    
-    // sorts ingredients into an html numbered list, stores in ingredients variable
     let ingredients = "";
     for (let i = 0; i < result.recipe.ingredients.length; i++) {
       ingredients += "<li>" + result.recipe.ingredients[i].food + "</li>";
     };
 
-    // accumulates each item into generatedHTML variable
+    // accumulates each div.item into generatedHTML variable
     generatedHTML += `
       <div class="item">
-        <img src="${result.recipe.image}" alt="img">
-        <div class="flex-container">
-          <h1 class="title">${result.recipe.label}</h1>
+        <div class="img-btn-flex">
+          <div class="">
+            <a target="_blank" href="${result.recipe.url}"><img src="${result.recipe.image}" alt="img"></a>  
+          </div>
           <a class="view-btn" target="_blank" href="${result.recipe.url}">View Recipe</a>
         </div>
-        <p class="item-data">Calories: ${Math.round(result.recipe.calories)}</p>
-        <p>Total time: ${result.recipe.totalTime > 0 ? timeFormat(result.recipe.totalTime) : "Varies"}</p>
-        <p>Cuisine type: ${result.recipe.cuisineType[0]}</p>
-        <p>Fat: ${Math.round(result.recipe.digest[0].total)} g</p>
-        <p>Carbs: ${Math.round(result.recipe.digest[1].total)} g</p>
-        <p>Protein: ${Math.round(result.recipe.digest[2].total)} g</p>
-        <p class="item-data">Diet label: ${
-          result.recipe.dietLabels.length > 0
-            ? result.recipe.dietLabels
-            : "No data found"}
-        </p>
-        <ul>${ingredients}</ul>
+        <div>
+          <h2 class="">${result.recipe.label}</h2>
+          <p>Calories: ${Math.round(result.recipe.calories)}</p>
+          <p>Total time: ${result.recipe.totalTime > 0 ? timeFormat(result.recipe.totalTime) : "Varies"}</p>
+          <p>Cuisine type: ${result.recipe.cuisineType[0]}</p>
+          <p>Fat: ${Math.round(result.recipe.digest[0].total)} g</p>
+          <p>Carbs: ${Math.round(result.recipe.digest[1].total)} g</p>
+          <p>Protein: ${Math.round(result.recipe.digest[2].total)} g</p>
+          <p>Diet label: 
+            ${result.recipe.dietLabels.length > 0 ? 
+              result.recipe.dietLabels : 
+              "No data found"}
+          </p>
+        </div>
+        <div>
+          <h2>Ingredients:</h2>
+          <ul>${ingredients}</ul>
+        </div>
       </div>
     `;
   });
