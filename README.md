@@ -7,4 +7,4 @@
 - Mobile responsive
 
 [Live View](https://pieton97.github.io/recipe-randomizer/)
-![project picture](/recipe.png)
+[![project picture](/recipe.png)](https://pieton97.github.io/recipe-randomizer/)
